@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card mt-4">
+
+                <div class="card-header bg-secondary text-center text-white">
+                    <h3>Contact Info</h3>
+                </div>
+
+                <div class="card-body">
+                    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="form-control">
+                        <div class="form-group">
+                            <label for="phone">Phone Number<span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="phone" placeholder="Enter Phone Number" required>
+                        </div>
+
+                        <div class="form-grooup">
+                            <table class="table table-bordered" formArrayName="quantities">
+                                <tr>
+                                  <th colspan="2">Add Alternate Phone Number:</th>
+                                  <th width="150px"><button type="button" (click)="addPhone()" class="btn btn-primary">Add</button></th>
+                                </tr>
+                                <tr *ngFor="let phone of quantities().controls; let i=index" [formGroupName]="i">
+                                  <td>
+                                      Phone :
+                                      <input type="text" formControlName="phone" class="form-control">
+                                  </td>
+                                  <td>
+                                      <button (click)="removeQuantity(i)" class="btn btn-danger">Remove</button>
+                                  </td>
+                                </tr>
+                              </table>
+                             
+                              <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
